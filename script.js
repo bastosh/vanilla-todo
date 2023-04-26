@@ -83,5 +83,5 @@ function randstr(prefix) {
 }
 
 // EVENT LISTENERS
-Array.from(document.getElementsByClassName('list-form')).forEach(element => element.addEventListener('submit', addItem));
-Array.from(document.getElementsByClassName('list-items')).forEach(element => element.addEventListener('click', removeItem));
+document.querySelectorAll('.list-form').forEach(el => el.addEventListener('submit', addItem));
+document.querySelectorAll('.list-items').forEach(el => el.addEventListener('click', removeItem));
