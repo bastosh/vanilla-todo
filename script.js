@@ -15,16 +15,69 @@ function addItem(e) {
 
     e.target.previousElementSibling.appendChild(newItem)
 
+    addItemToStorage(newItemContent, context)
+
     e.target.querySelector('input').value = ''
 }
 
-function removeItem(e) {
+function addItemToDOM(item, context) {
+    const newItem = createItem(item, context)
+    document.getElementById(context + '-list').firstElementChild.nextElementSibling.appendChild(newItem)
+}
+
+function addItemToStorage(item, context) {
+    const itemsFromStorage = getItemsFromStorage(context)
+    itemsFromStorage.push(item)
+    localStorage.setItem('items-' + context, JSON.stringify(itemsFromStorage))
+}
+
+function removeItemFromStorage(item, context) {
+    let itemsFromStorage = getItemsFromStorage(context)
+    itemsFromStorage = itemsFromStorage.filter((storageItem) => storageItem !== item)
+    localStorage.setItem('items-' + context, JSON.stringify(itemsFromStorage))
+}
+
+function getItemsFromStorage(context) {
+    let itemsFromStorage
+    if (localStorage.getItem('items-' + context) === null) {
+        itemsFromStorage = []
+    } else {
+        itemsFromStorage = JSON.parse(localStorage.getItem('items-' + context))
+    }
+    return itemsFromStorage
+}
+
+function displayItems() {
+    const itemsFromStorageLeft = getItemsFromStorage('left')
+    const itemsFromStorageRight = getItemsFromStorage('right')
+    itemsFromStorageLeft.forEach((item) => addItemToDOM(item, 'left'))
+    itemsFromStorageRight.forEach((item) => addItemToDOM(item, 'right'))
+}
+
+function onRemoveItem(e) {
     if (e.target.parentElement.classList.contains('remove') || e.target.parentElement.parentElement.classList.contains('remove')) {
         if (e.target.parentElement.classList.contains('remove')) {
-            e.target.parentElement.parentElement.remove()
+            remove(e.target.parentElement.parentElement)
         } else if (e.target.parentElement.parentElement.classList.contains('remove')) {
-            e.target.parentElement.parentElement.parentElement.remove()
+            remove(e.target.parentElement.parentElement.parentElement)
         }
+    }
+}
+
+function remove(item) {
+    removeItemFromStorage(getTextContent(item), getContext(item))
+    item.remove()
+}
+
+function getTextContent(item) {
+    return item.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.textContent
+}
+
+function getContext(item) {
+    if (item.parentElement.parentElement.attributes.id.value === 'left-list') {
+        return 'left'
+    } else {
+        return 'right'
     }
 }
 
@@ -113,9 +166,14 @@ function toggleSearch(e) {
     }
 }
 
-// EVENT LISTENERS
-document.addEventListener('keydown', toggleSearch)
-document.querySelectorAll('.list-form').forEach(el => el.addEventListener('submit', addItem))
-document.querySelectorAll('.list-items').forEach(el => el.addEventListener('click', removeItem))
-filterInput.addEventListener('input', filterItems)
+function init() {
+    document.addEventListener('keydown', toggleSearch)
+    document.querySelectorAll('.list-form').forEach(el => el.addEventListener('submit', addItem))
+    document.querySelectorAll('.list-items').forEach(el => el.addEventListener('click', onRemoveItem))
+    filterInput.addEventListener('input', filterItems)
+    document.addEventListener('DOMContentLoaded', displayItems)
+}
+
+init()
+
 
