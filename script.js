@@ -1,14 +1,3 @@
-// const leftList = document.getElementById('left-list')
-// const leftListTitle = document.getElementById('left-list-title')
-// const leftListItems = document.getElementById('left-list-items')
-// const leftInput = document.getElementById('left-list-input')
-// const leftButton = document.getElementById('left-list-button')
-// const rightList = document.getElementById('right-list')
-// const rightListTitle = document.getElementById('right-list-title')
-// const rightListItems = document.getElementById('right-list-items')
-// const rightInput = document.getElementById('right-list-input')
-// const rightButton = document.getElementById('right-list-button')
-
 function addItem(e) {
     e.preventDefault()
 
@@ -16,7 +5,7 @@ function addItem(e) {
         return
     }
 
-    const context = e.target.attributes.id.value  === 'left-list-form' ? 'left' : 'right';
+    const context = e.target.attributes.id.value  === 'left-form' ? 'left' : 'right';
 
     const newItemContent = e.target.querySelector('input').value
 
@@ -25,6 +14,16 @@ function addItem(e) {
     e.target.previousElementSibling.appendChild(newItem)
 
     e.target.querySelector('input').value = ''
+}
+
+function removeItem(e) {
+    if (e.target.parentElement.classList.contains('remove') || e.target.parentElement.parentElement.classList.contains('remove')) {
+        if (e.target.parentElement.classList.contains('remove')) {
+            e.target.parentElement.parentElement.remove()
+        } else if (e.target.parentElement.parentElement.classList.contains('remove')) {
+            e.target.parentElement.parentElement.parentElement.remove()
+        }
+    }
 }
 
 function createItem(text, context) {
@@ -67,7 +66,7 @@ function createItem(text, context) {
     wrapper.appendChild(label)
 
     const close = document.createElement('div')
-    close.className = 'w-6 flex items-center cursor-pointer text-red-700'
+    close.className = 'remove w-6 flex items-center cursor-pointer text-red-700'
     close.innerHTML = 
     `
     <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -79,10 +78,10 @@ function createItem(text, context) {
     return wrapper
 }
 
-function randstr(prefix)
-{
+function randstr(prefix) {
     return Math.random().toString(36).replace('0.', prefix || '');
 }
 
-document.getElementById('left-list-form').addEventListener('submit', addItem)
-document.getElementById('right-list-form').addEventListener('submit', addItem)
+// EVENT LISTENERS
+Array.from(document.getElementsByClassName('list-form')).forEach(element => element.addEventListener('submit', addItem));
+Array.from(document.getElementsByClassName('list-items')).forEach(element => element.addEventListener('click', removeItem));
