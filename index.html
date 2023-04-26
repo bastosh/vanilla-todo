@@ -8,6 +8,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+    <div id="filter" class="flex items-center absolute top-16 left-1/2 transform -translate-x-1/2 w-96 hidden">   
+        <label for="filter-input" class="sr-only">Search</label>
+        <div class="relative w-full">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+            </div>
+            <input type="text" id="filter-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5" placeholder="Search" required>
+        </div>
+    </div>
     <div class="flex flex-col lg:flex-row items-center justify-center w-screen h-screen font-medium">
         <div class="flex flex-grow items-center justify-center h-full text-gray-600 lg:bg-gray-100">
             <!-- Component Start -->
@@ -27,7 +36,7 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                            <span class="ml-4 text-sm">Prepare Bilbo’s birthday.</span>
+                            <span class="item ml-4 text-sm">Prepare Bilbo’s birthday.</span>
                         </label>
                         <div class="w-6 flex items-center cursor-pointer text-red-700">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -43,7 +52,7 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                            <span class="ml-4 text-sm">Chill and smoke some Old Toby.</span>
+                            <span class="item ml-4 text-sm">Chill and smoke some Old Toby.</span>
                         </label>	
                         <div class="w-6 flex items-center cursor-pointer text-red-700">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -59,7 +68,7 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                            <span class="ml-4 text-sm">Keep ring secret and safe.</span>
+                            <span class="item ml-4 text-sm">Keep ring secret and safe.</span>
                         </label>	
                         <div class="w-6 flex items-center cursor-pointer text-red-700">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -75,7 +84,7 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                            <span class="ml-4 text-sm">Meet Gandalf at Bree.</span>
+                            <span class="item ml-4 text-sm">Meet Gandalf at Bree.</span>
                         </label>	
                         <div class="w-6 flex items-center cursor-pointer text-red-700">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -91,7 +100,7 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                            <span class="ml-4 text-sm">Destroy ring and defeat dark lord.</span>
+                            <span class="item ml-4 text-sm">Destroy ring and defeat dark lord.</span>
                         </label>	
                         <div class="w-6 flex items-center cursor-pointer text-red-700">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -129,7 +138,7 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                            <span class="ml-4 text-sm">Pull weeds.</span>
+                            <span class="item ml-4 text-sm">Pull weeds.</span>
                         </label>	
                         <div class="w-6 flex items-center cursor-pointer text-red-700">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -145,7 +154,7 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                            <span class="ml-4 text-sm">Listen to Master Frodo & Gandalf.</span>
+                            <span class="item ml-4 text-sm">Listen to Master Frodo & Gandalf.</span>
                         </label>	
                         <div class="w-6 flex items-center cursor-pointer text-red-700">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -161,7 +170,7 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                            <span class="ml-4 text-sm">Boil, mash, and stick potatoes in stew.</span>
+                            <span class="item ml-4 text-sm">Boil, mash, and stick potatoes in stew.</span>
                         </label>	
                         <div class="w-6 flex items-center cursor-pointer text-red-700">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -177,7 +186,7 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                            <span class="ml-4 text-sm">Carry Frodo.</span>
+                            <span class="item ml-4 text-sm">Carry Frodo.</span>
                         </label>	
                         <div class="w-6 flex items-center cursor-pointer text-red-700">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -193,7 +202,7 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                            <span class="ml-4 text-sm">Be all round legend.</span>
+                            <span class="item ml-4 text-sm">Be all round legend.</span>
                         </label>	
                         <div class="w-6 flex items-center cursor-pointer text-red-700">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">

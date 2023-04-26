@@ -1,3 +1,5 @@
+const filterInput = document.getElementById('filter-input')
+
 function addItem(e) {
     e.preventDefault()
 
@@ -59,7 +61,7 @@ function createItem(text, context) {
     label.appendChild(icon)
 
     const content = document.createElement('span')
-    content.className = 'ml-4 text-sm'
+    content.className = 'item ml-4 text-sm'
     content.appendChild(document.createTextNode(text))
     label.appendChild(content)
 
@@ -78,10 +80,42 @@ function createItem(text, context) {
     return wrapper
 }
 
+function filterItems(e) {
+    const items = document.querySelectorAll('.item.ml-4.text-sm')
+    const text = e.target.value.toLowerCase()
+  
+    items.forEach((item) => {
+      const itemName = item.firstChild.textContent.toLowerCase()
+      if (itemName.indexOf(text) != -1) {
+        item.parentElement.parentElement.style.display = 'flex'
+      } else {
+        item.parentElement.parentElement.style.display = 'none'
+      }
+    });
+  }
+
 function randstr(prefix) {
     return Math.random().toString(36).replace('0.', prefix || '');
 }
 
+function toggleSearch(e) {
+    const filter = document.getElementById('filter')
+    if (e.keyCode == 83 && e.ctrlKey) {
+        filter.classList.toggle('hidden')
+        if (!filter.classList.contains('hidden')) {
+            filterInput.focus()
+        } else {
+            filterInput.value = ''
+            document.querySelectorAll('.item.ml-4.text-sm').forEach((item) => {
+                item.parentElement.parentElement.style.display = 'flex'
+            })
+        }
+    }
+}
+
 // EVENT LISTENERS
-document.querySelectorAll('.list-form').forEach(el => el.addEventListener('submit', addItem));
-document.querySelectorAll('.list-items').forEach(el => el.addEventListener('click', removeItem));
+document.addEventListener('keydown', toggleSearch)
+document.querySelectorAll('.list-form').forEach(el => el.addEventListener('submit', addItem))
+document.querySelectorAll('.list-items').forEach(el => el.addEventListener('click', removeItem))
+filterInput.addEventListener('input', filterItems)
+
