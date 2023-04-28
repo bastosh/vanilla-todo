@@ -8,3 +8,27 @@ input[type=checkbox]:checked+label span:nth-of-type(2) {
 	text-decoration: line-through;
 	color: #9CA3AF;
 }
+
+#left-wrapper {
+	border-left: solid 8px #F3F4F6;
+	border-bottom: solid 8px #F3F4F6;
+	border-top: solid 8px #F3F4F6;
+}
+
+#right-wrapper {
+	border-right: solid 8px #111827;
+	border-bottom: solid 8px #111827;
+	border-top: solid 8px #111827;
+}
+
+body.edit #right-wrapper {
+	border-right: solid 8px #10B981;
+	border-bottom: solid 8px #10B981;
+	border-top: solid 8px #10B981;
+}
+
+body.edit #left-wrapper {
+	border-left: solid 8px #10B981;
+	border-bottom: solid 8px #10B981;
+	border-top: solid 8px #10B981;
+}
