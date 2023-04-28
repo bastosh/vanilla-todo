@@ -47,6 +47,12 @@ function addItem(e) {
 
     const context = e.target.attributes.id.value  === 'left-form' ? 'left' : 'right';
     const newItemContent = e.target.querySelector('input').value
+
+    if (chekIfItemExists(newItemContent, context)) {
+        alert('Item already exists!')
+        return
+    }
+
     const newItem = createItem(newItemContent, context)
 
     e.target.previousElementSibling.appendChild(newItem)
@@ -99,6 +105,11 @@ function filterItems(e) {
 }
 
 // ITEM CREATION
+function chekIfItemExists(item, context) {
+    const itemsFromStorage = getItemsFromStorage(context)
+    return itemsFromStorage.includes(item)
+}
+
 function addItemToDOM(item, context) {
     const newItem = createItem(item, context)
     document.getElementById(context + '-list').firstElementChild.nextElementSibling.appendChild(newItem)
